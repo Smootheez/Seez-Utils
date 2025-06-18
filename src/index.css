@@ -32,6 +32,10 @@
   --border: var(--color-gray-700);
 }
 
+html {
+  @apply scroll-smooth scroll-pt-20;
+}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
   @apply bg-background text-text;
@@ -39,4 +43,8 @@ body {
 
 header {
   @apply z-40 fixed w-full px-4;
+}
+
+main {
+  @apply max-w-7xl mx-auto px-4 text-sm md:text-base;
 }

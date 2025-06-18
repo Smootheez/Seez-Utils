@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export function ThemeSwitchButton({ className }: { className?: string }) {
   const [isOn, setIsOn] = useState(
@@ -54,5 +55,16 @@ export function HamburgerButton({
         }`}
       />
     </div>
+  );
+}
+
+export function BackToHomeButton({ className }: { className?: string }) {
+  return (
+    <Link
+      className={`px-3 py-1 rounded-full bg-primary/70 hover:bg-primary/90 transition-colors duration-300 shadow-lg ${className}`}
+      to={"/"}
+    >
+      Back To Home
+    </Link>
   );
 }

@@ -1,5 +1,8 @@
 {
-  "name": "seez-tools",
+  "name": "seez-utils",
+  "description": "A hub with a bunch of collection of utilities",
+  "author": "Smootheez",
+  "license": "MIT",
   "private": true,
   "version": "0.0.0",
   "type": "module",
