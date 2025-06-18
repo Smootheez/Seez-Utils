@@ -10,7 +10,7 @@ export function ToolsCard({
   link: string;
 }) {
   return (
-    <div className="bg-surface/80 backdrop-blur-xs p-4 rounded-lg shadow-lg border-border border">
+    <div className="bg-surface/80 backdrop-blur-xs py-2 px-4 md:p-4 rounded-lg shadow-lg border-border border">
       <h2 className="text-lg md:text-xl font-semibold">{title}</h2>
       <p>{description}</p>
       <Link

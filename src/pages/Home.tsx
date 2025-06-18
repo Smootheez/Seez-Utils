@@ -3,12 +3,12 @@ import { ToolsCard } from "../components/tools-card";
 
 export function Home() {
   const toolList = [
-    { title: "Tool 1", description: "Description of Tool 1.", link: "#" },
-    { title: "Tool 2", description: "Description of Tool 2.", link: "#" },
-    { title: "Tool 3", description: "Description of Tool 3.", link: "#" },
-    { title: "Tool 4", description: "Description of Tool 4.", link: "#" },
-    { title: "Tool 5", description: "Description of Tool 5.", link: "#" },
-    { title: "Tool 6", description: "Description of Tool 6.", link: "#" },
+    { title: "Tool 1", description: "Description of Tool 1.", link: "/exampletoolpage" },
+    { title: "Tool 2", description: "Description of Tool 2.", link: "/exampletoolpage" },
+    { title: "Tool 3", description: "Description of Tool 3.", link: "/exampletoolpage" },
+    { title: "Tool 4", description: "Description of Tool 4.", link: "/exampletoolpage" },
+    { title: "Tool 5", description: "Description of Tool 5.", link: "/exampletoolpage" },
+    { title: "Tool 6", description: "Description of Tool 6.", link: "/exampletoolpage" },
   ]
 
   return (
@@ -20,7 +20,7 @@ export function Home() {
             <h1 className="text-text text-4xl font-bold tracking-tight md:text-5xl max-w-md">
               A hub with a bunch of tools from my side projects.
             </h1>
-            <p className="mt-2 md:mt-4 text-text/80 max-w-2xl">
+            <p className="mt-2 md:mt-4 text-muted-text/90 max-w-2xl">
               Discover a growing set of simple, practical tools—each crafted
               from my personal side projects. You might find something handy!
               Every tool is made to solve a specific problem or streamline a
