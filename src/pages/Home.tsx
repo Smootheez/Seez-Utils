@@ -20,12 +20,12 @@ export function Home() {
     },
     {
       title: "Project 4",
-      description: "Description of Tool 4.",
+      description: "Description of Project 4.",
       link: "/under-construction",
     },
     {
       title: "Project 5",
-      description: "Description of Tool 5.",
+      description: "Description of Project 5.",
       link: "/under-construction",
     },
     {
@@ -39,7 +39,7 @@ export function Home() {
     <>
       <Header />
       <main className="pt-20 md:pt-22">
-        <div className="mx-4">
+        <div className="mx-4 space-y-4 mb-4">
           <section id="home">
             <h1 className="text-text text-4xl font-bold tracking-tight md:text-5xl max-w-xl">
               A collection of tools, tiny utilities, and silly little pages—all
@@ -54,80 +54,78 @@ export function Home() {
             </p>
           </section>
 
-          <section
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-4 border-border pt-4 border-t"
-            id="projects"
-          >
-            {toolList.map((tool, index) => (
-              <ProjectsCard
-                key={index}
-                title={tool.title}
-                description={tool.description}
-                link={tool.link}
-              />
-            ))}
+          <section className="border-border pt-2 border-t" id="projects">
+            <h2 className="text-2xl font-semibold text-text md:text-3xl mb-2">
+              Projects
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {toolList.map((tool, index) => (
+                <ProjectsCard
+                  key={index}
+                  title={tool.title}
+                  description={tool.description}
+                  link={tool.link}
+                />
+              ))}
+            </div>
           </section>
 
-          <div className="mt-8 space-y-4 mb-4">
-            <section id="contact" className="border-t border-border pt-2">
-              <h2 className="text-2xl font-semibold text-text md:text-3xl">
-                Contact
-              </h2>
-              <div className="space-y-2 text-muted-text/90">
-                <p>
-                  If you have any questions or suggestions, feel free to reach
-                  out!
-                </p>
-                <p>
-                  Create an issue on:{" "}
-                  <a
-                    href="https://github.com/Smootheez/seez-tools/issues"
-                    className="text-primary hover:underline"
-                  >
-                    GitHub
+          <section id="contact" className="border-t border-border pt-2">
+            <h2 className="text-2xl font-semibold md:text-3xl">Contact</h2>
+            <div className="space-y-2 text-muted-text/90">
+              <p>
+                If you have any questions or suggestions, feel free to reach
+                out!
+              </p>
+              <p>
+                Create an issue on:{" "}
+                <a
+                  href="https://github.com/Smootheez/seez-tools/issues"
+                  className="text-primary hover:underline"
+                >
+                  GitHub
+                </a>
+              </p>
+              <div>
+                <p>Support my work:</p>
+                <div className="flex gap-x-2">
+                  <a href="https://ko-fi.com/smootheez">
+                    <img
+                      src="https://raw.githubusercontent.com/Smootheez/Smootheez/7b16ed55570e49b9320e9cade5e572b271e9f1fe/assets/donation-kofi.svg"
+                      alt="ko-fi"
+                    />
                   </a>
-                </p>
-                <div>
-                  <p>Support my work:</p>
-                  <div className="flex gap-x-2">
-                    <a href="https://ko-fi.com/smootheez">
-                      <img
-                        src="https://raw.githubusercontent.com/Smootheez/Smootheez/7b16ed55570e49b9320e9cade5e572b271e9f1fe/assets/donation-kofi.svg"
-                        alt="ko-fi"
-                      />
-                    </a>
-                    <a href="https://paypal.me/smootheez">
-                      <img
-                        src="https://raw.githubusercontent.com/Smootheez/Smootheez/7b16ed55570e49b9320e9cade5e572b271e9f1fe/assets/donation-paypal.svg"
-                        alt="paypal"
-                      />
-                    </a>
-                  </div>
+                  <a href="https://paypal.me/smootheez">
+                    <img
+                      src="https://raw.githubusercontent.com/Smootheez/Smootheez/7b16ed55570e49b9320e9cade5e572b271e9f1fe/assets/donation-paypal.svg"
+                      alt="paypal"
+                    />
+                  </a>
                 </div>
               </div>
-            </section>
+            </div>
+          </section>
 
-            <section id="about" className="border-border pt-2 border-t">
-              <h2 className="text-2xl md:text-3xl font-semibold text-text">
-                About
-              </h2>
-              <div className="space-y-2 text-muted-text/90">
-                <p>
-                  Hi! I’m someone who loves building small things—tools that
-                  solve everyday problems, and random little web experiments
-                  just for fun. This site is my digital playground where I
-                  collect those side projects, whether they’re useful utilities
-                  or silly ideas brought to life.
-                </p>
-                <p>
-                  Everything here is made with curiosity, a bit of creativity,
-                  and the hope that someone else might find it helpful or
-                  entertaining. I'm always adding more, so feel free to explore
-                  and see what you stumble upon!
-                </p>
-              </div>
-            </section>
-          </div>
+          <section id="about" className="border-border pt-2 border-t">
+            <h2 className="text-2xl md:text-3xl font-semibold text-text">
+              About
+            </h2>
+            <div className="space-y-2 text-muted-text/90">
+              <p>
+                Hi! I’m someone who loves building small things—tools that solve
+                everyday problems, and random little web experiments just for
+                fun. This site is my digital playground where I collect those
+                side projects, whether they’re useful utilities or silly ideas
+                brought to life.
+              </p>
+              <p>
+                Everything here is made with curiosity, a bit of creativity, and
+                the hope that someone else might find it helpful or
+                entertaining. I'm always adding more, so feel free to explore
+                and see what you stumble upon!
+              </p>
+            </div>
+          </section>
         </div>
       </main>
     </>
