@@ -20,7 +20,7 @@ export function Header() {
       <header className="fixed top-0 left-0 w-full z-40">
         <div className="max-w-7xl mx-auto rounded-full backdrop-blur-xs mt-4 drop-shadow-xl bg-surface/80 px-5 py-2 flex justify-between items-center">
           <Link to="/" className="text-2xl md:text-3xl font-extrabold">
-            Seez Tools
+            Seez Utils
           </Link>
           <nav className="hidden items-center gap-x-3 md:flex">
             {navLinks.map((link, index) => (
