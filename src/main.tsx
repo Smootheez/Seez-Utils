@@ -5,6 +5,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Home } from "./pages/Home.tsx";
 import { UnderConstruction } from "./pages/UnderConstruction.tsx";
 import { NetherPortalCalculator } from "./pages/NetherPortalCalculator.tsx";
+import { AnswerMyLove } from "./pages/answer-my-love/AnswerMyLove.tsx";
+import { LoveYes } from "./pages/answer-my-love/LoveYes.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -16,6 +18,8 @@ createRoot(document.getElementById("root")!).render(
           path="/nether-portal-calculator"
           element={<NetherPortalCalculator />}
         />
+        <Route path="/answer-my-love" element={<AnswerMyLove />} />
+        <Route path="/answer-my-love/yes" element={<LoveYes />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>

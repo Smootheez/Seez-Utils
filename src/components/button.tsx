@@ -61,7 +61,7 @@ export function HamburgerButton({
 export function BackToHomeButton({ className }: { className?: string }) {
   return (
     <Link
-      className={`px-3 py-1 rounded-full bg-primary/70 hover:bg-primary/90 transition-colors duration-300 shadow-lg ${className}`}
+      className={`px-3 py-1 rounded-full bg-primary/70 hover:bg-primary/90 transition-colors duration-300 shadow-md shadow-black/50 ${className}`}
       to={"/"}
     >
       Back To Home

@@ -21,7 +21,7 @@ export function Home() {
     {
       title: "Answer My Love",
       description: "Just answer my love.",
-      link: "/under-construction",
+      link: "/answer-my-love",
     },
     {
       title: "Project 5",

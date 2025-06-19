@@ -84,6 +84,8 @@ export function NetherPortalCalculator() {
           </div>
         </div>
 
+        <div className="h-[1px] w-full bg-border"/>
+        
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4">
           <div className="flex flex-col gap-y-2">
             <label htmlFor="nether-x" className="font-bold">
