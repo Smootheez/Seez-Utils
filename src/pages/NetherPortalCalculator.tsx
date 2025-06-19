@@ -49,7 +49,7 @@ export function NetherPortalCalculator() {
 
   return (
     <main className="flex flex-col items-center justify-center h-screen text-center">
-      <h1 className="text-text text-3xl font-bold md:text-4xl max-w-md">
+      <h1 className="text-3xl font-bold md:text-4xl max-w-md font-bungee text-shadow-md">
         Nether Portal Calculator
       </h1>
       <div className="my-2 md:my-4 max-w-md bg-surface rounded-lg shadow-lg p-4 border border-border w-full flex flex-col gap-8">
@@ -83,6 +83,8 @@ export function NetherPortalCalculator() {
             />
           </div>
         </div>
+
+        <div className="h-[1px] w-full bg-border" />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4">
           <div className="flex flex-col gap-y-2">

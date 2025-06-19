@@ -11,17 +11,17 @@ export function Home() {
     {
       title: "SVG Downloader",
       description: "Download SVG files from any webpage.",
-      link: "/under-construction",
+      link: "/svg-downloader",
     },
     {
       title: "Color Picker",
       description: "Select and copy colors from pictures.",
-      link: "/under-construction",
+      link: "/color-picker",
     },
     {
       title: "Answer My Love",
       description: "Just answer my love.",
-      link: "/under-construction",
+      link: "/answer-my-love",
     },
     {
       title: "Project 5",

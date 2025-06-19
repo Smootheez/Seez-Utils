@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Shade&family=Cherry+Bomb+One&family=Finger+Paint&family=Rubik+Wet+Paint&family=Rubik:ital,wght@0,300..900;1,300..900&family=Single+Day&display=swap');
 @import "tailwindcss";
 
 @custom-variant dark (&:is(.dark *));
@@ -11,6 +11,12 @@
   --color-text: var(--text);
   --color-muted-text: var(--muted-text);
   --color-border: var(--border);
+  --font-bungee: Bungee Shade, Arial, Helvetica, sans-serif;
+  --font-cherry: Cherry Bomb One, Arial, Helvetica, sans-serif;
+  --font-rubik-wet: Rubik Wet Paint, Arial, Helvetica, sans-serif;
+  --font-single: Single Day, Arial, Helvetica, sans-serif;
+  --font-finger: Finger Paint, Arial, Helvetica, sans-serif;
+  --font-rubik: Rubik, Arial, Helvetica, sans-serif;
 }
 
 :root {
@@ -38,8 +44,7 @@ html {
 }
 
 body {
-  font-family: IBM Plex Mono, Arial, Helvetica, sans-serif;
-  @apply bg-background text-text;
+  @apply bg-background text-text font-rubik;
 }
 
 header {
