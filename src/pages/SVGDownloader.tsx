@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { BackToHomeButton } from "../components/button";
 
 export function SVGDownloader() {
@@ -24,26 +24,52 @@ export function SVGDownloader() {
     });
   };
 
-  const handleTouchStart = (e: React.TouchEvent) => {
-    const touch = e.touches[0];
-    setIsDragging(true);
-    dragStart.current = {
-      x: touch.clientX - position.x,
-      y: touch.clientY - position.y,
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const handleTouchStart = (e: TouchEvent) => {
+      if (e.touches.length !== 1) return;
+      const touch = e.touches[0];
+      setIsDragging(true);
+      dragStart.current = {
+        x: touch.clientX - position.x,
+        y: touch.clientY - position.y,
+      };
     };
-  };
 
-  const handleTouchMove = (e: React.TouchEvent) => {
-    if (!isDragging) return;
-    const touch = e.touches[0];
-    setPosition({
-      x: touch.clientX - dragStart.current.x,
-      y: touch.clientY - dragStart.current.y,
+    const handleTouchMove = (e: TouchEvent) => {
+      if (!isDragging || e.touches.length !== 1) return;
+      e.preventDefault(); // IMPORTANT: Prevent scrolling
+      const touch = e.touches[0];
+      setPosition({
+        x: touch.clientX - dragStart.current.x,
+        y: touch.clientY - dragStart.current.y,
+      });
+    };
+
+    const handleTouchEnd = () => {
+      setIsDragging(false);
+    };
+
+    container.addEventListener("touchstart", handleTouchStart, {
+      passive: false,
     });
-  };
+    container.addEventListener("touchmove", handleTouchMove, {
+      passive: false,
+    });
+    container.addEventListener("touchend", handleTouchEnd);
+    container.addEventListener("touchcancel", handleTouchEnd);
 
-  const handleTouchEnd = () => setIsDragging(false);
-  
+    return () => {
+      container.removeEventListener("touchstart", handleTouchStart);
+      container.removeEventListener("touchmove", handleTouchMove);
+      container.removeEventListener("touchend", handleTouchEnd);
+      container.removeEventListener("touchcancel", handleTouchEnd);
+    };
+  }, [position, isDragging]);
 
   const handleMouseUp = () => setIsDragging(false);
 
@@ -102,17 +128,15 @@ export function SVGDownloader() {
               </div>
             </div>
             <div
+              ref={containerRef}
               className="w-full h-64 overflow-hidden border border-dashed border-border rounded-lg bg-surface relative cursor-grab active:cursor-grabbing touch-none"
               onMouseDown={handleMouseDown}
               onMouseMove={handleMouseMove}
               onMouseUp={handleMouseUp}
               onMouseLeave={handleMouseUp}
-              onTouchStart={handleTouchStart}
-              onTouchMove={handleTouchMove}
-              onTouchEnd={handleTouchEnd}
             >
               <div
-                className="absolute top-0 left-0"
+                className="absolute top-0 left-0 pointer-events-none"
                 style={{
                   transform: `translate(${position.x}px, ${position.y}px) scale(${scale})`,
                   transformOrigin: "top left",
