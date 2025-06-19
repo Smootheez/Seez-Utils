@@ -1,6 +1,18 @@
 import { useState, useRef, useEffect } from "react";
 import { BackToHomeButton } from "../components/button";
 
+/**
+ * A page for downloading SVGs.
+ *
+ * The page displays an text input for users to input their SVG code.
+ * The page also displays a preview canvas for the SVG, which users can drag
+ * and zoom.
+ *
+ * When the user clicks the "Download SVG" button, the page will download the
+ * SVG file.
+ *
+ * @returns A React component.
+ */
 export function SVGDownloader() {
   const [svgCode, setSvgCode] = useState("");
   const [scale, setScale] = useState(1);

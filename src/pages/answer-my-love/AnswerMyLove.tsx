@@ -3,6 +3,15 @@ import { BackToHomeButton } from "../../components/button";
 import pinching from "/cute-sweet.gif";
 import { Link } from "react-router-dom";
 
+  /**
+   * A page that asks the user if they love the author.
+   *
+   * The page renders a red background, a cute image, a heading, a
+   * button that says "Yes", and a button that says "No" (which moves
+   * to a random position when clicked). The "Yes" button links to
+   * the LoveYes page. The page also renders a BackToHomeButton at the
+   * bottom.
+   */
 export function AnswerMyLove() {
   return (
     <div className="bg-red-400 h-screen flex flex-col items-center justify-center gap-y-4 font-cherry">
@@ -26,6 +35,17 @@ export function AnswerMyLove() {
   );
 }
 
+  /**
+   * A button that moves to a random position when clicked.
+   *
+   * When the button is first rendered, it is positioned relatively and
+   * does not move. When the button is clicked for the first time,
+   * it transitions to an absolute position and moves to a random
+   * position. Subsequent clicks will move the button to a new random
+   * position.
+   *
+   * @returns A React component.
+   */
 function NoButton() {
   const [top, setTop] = useState(0);
   const [left, setLeft] = useState(0);

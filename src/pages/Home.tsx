@@ -1,6 +1,25 @@
 import { Header } from "../components/header";
 import { ProjectsCard } from "../components/projects-card";
 
+/**
+ * The homepage of the Seez Utils website.
+ *
+ * This page renders the header component and main content section.
+ * The main content section contains a hero section, a projects section,
+ * a contact section, and an about section.
+ *
+ * The hero section contains a heading and a paragraph of text that
+ * describe the purpose of the website.
+ *
+ * The projects section contains a heading and a grid of project cards.
+ * Each project card contains a title, description, and link to the project.
+ *
+ * The contact section contains a heading and a paragraph of text that
+ * provide information on how to contact the author of the website.
+ *
+ * The about section contains a heading and a paragraph of text that
+ * describe the author of the website and their goals for the website.
+ */
 export function Home() {
   const toolList = [
     {

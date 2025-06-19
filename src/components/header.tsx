@@ -2,6 +2,16 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { HamburgerButton, ThemeSwitchButton } from "./button";
 
+  /**
+   * Header component that provides navigation links and a theme switch button.
+   *
+   * On mobile devices, it renders a hamburger button that toggles the
+   * visibility of a full-screen navigation menu. The navigation links are
+   * rendered on the left side of the header, and the theme switch button is
+   * rendered on the right side.
+   *
+   * @returns A React component that renders the header.
+   */
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const onClick = () => {

@@ -1,6 +1,18 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
+/**
+ * A toggle button for switching the theme between light and dark mode.
+ *
+ * The component is a rounded rectangle with a toggle button inside. When the
+ * button is clicked, the component will toggle the theme and update the
+ * `theme` in localStorage.
+ *
+ * @param {{ className?: string }} props
+ * @param {string} [props.className] An optional class name to be applied to the
+ * component.
+ * @returns {ReactElement} A React element representing the theme switch button.
+ */
 export function ThemeSwitchButton({ className }: { className?: string }) {
   const [isOn, setIsOn] = useState(
     () => localStorage.getItem("theme") === "dark"
@@ -25,6 +37,16 @@ export function ThemeSwitchButton({ className }: { className?: string }) {
   );
 }
 
+
+/**
+ * A hamburger button that can be toggled.
+ *
+ * @param {{isOpen?: boolean, onToggle?: () => void, className?: string}} props
+ * @param {boolean} [props.isOpen=false] Whether the button is open. If true, the button will be rendered as an "X".
+ * @param {() => void} [props.onToggle] A callback that will be called when the button is clicked.
+ * @param {string} [props.className] An optional class name to be applied to the button.
+ * @returns {ReactElement} A React element representing the hamburger button.
+ */
 export function HamburgerButton({
   isOpen,
   onToggle,
@@ -57,6 +79,12 @@ export function HamburgerButton({
     </div>
   );
 }
+
+/**
+ * A button component that redirects to the home page.
+ *
+ * @param className - An optional string of class names to apply additional styling.
+ */
 
 export function BackToHomeButton({ className }: { className?: string }) {
   return (

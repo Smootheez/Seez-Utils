@@ -1,5 +1,16 @@
 import { Link } from "react-router-dom";
 
+/**
+ * A component for rendering a project card in the home page.
+ *
+ * @param {{title: string, description: string, link: string}} props
+ * The props object should have the following properties:
+ * - `title`: The title of the project.
+ * - `description`: The description of the project.
+ * - `link`: The link to the project page.
+ *
+ * @returns {React.ReactElement} A React element representing the project card.
+ */
 export function ProjectsCard({
   title,
   description,

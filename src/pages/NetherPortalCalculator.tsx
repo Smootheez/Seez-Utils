@@ -1,6 +1,18 @@
 import { useState } from "react";
 import { BackToHomeButton } from "../components/button";
 
+  /**
+   * Nether Portal Calculator page
+   *
+   * This page provides a calculator for players to easily calculate the coordinates of a Nether portal in the Overworld.
+   *
+   * The page contains two pairs of input fields, one for the Overworld coordinates and one for the Nether coordinates.
+   * The user can input the coordinates in one pair of fields and the calculator will automatically fill in the other pair of fields.
+   *
+   * The calculator uses the formula (Overworld X/Z) / 8 = Nether X/Z to calculate the coordinates.
+   *
+   * The page also includes a "Back to Home" button to return the user to the home page.
+   */
 export function NetherPortalCalculator() {
   const [overworldX, setOverworldX] = useState<string>("");
   const [overworldZ, setOverworldZ] = useState<string>("");

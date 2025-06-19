@@ -1,5 +1,14 @@
 import { Link } from "react-router-dom";
 
+/**
+ * A component that displays a message indicating that the project is under construction.
+ *
+ * The component renders a main section with a heading, a paragraph with a brief message
+ * about ongoing work, and a link to navigate back to the home page.
+ *
+ * @returns A React component.
+ */
+
 export function UnderConstruction() {
   return (
     <main>
