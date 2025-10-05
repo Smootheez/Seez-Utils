@@ -37,8 +37,8 @@ export const metadata = {
 
 export default function DiscordWebhookSenderPage() {
   return (
-    <main className="px-4 max-w-7xl mx-auto">
-      <div className="min-h-screen max-h-screen overflow-hidden w-full grid grid-cols-2">
+    <main className="md:px-4 max-w-7xl mx-auto">
+      <div className="min-h-screen max-h-screen overflow-hidden w-full grid grid-cols-1 md:grid-cols-2">
         {/* Edit the webhook messages */}
         <ScrollArea className="max-h-screen">
           <div className="p-4 w-full">

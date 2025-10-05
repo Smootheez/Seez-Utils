@@ -41,7 +41,7 @@ export default function NetherCalculatorPage() {
             {/* 👇 Client-side interactive part */}
             <NetherCalculatorClient />
 
-            <CardFooter className="text-left flex flex-col items-start bg-accent m-4 rounded-lg p-4">
+            <CardFooter className="text-left flex flex-col items-start bg-accent/15 m-4 rounded-lg p-4">
               <h4 className="text-lg font-semibold">Description</h4>
               <p className="text-sm text-muted-foreground text-justify">
                 The Nether Calculator helps you convert coordinates between the
