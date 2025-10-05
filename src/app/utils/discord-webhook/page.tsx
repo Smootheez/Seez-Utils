@@ -16,7 +16,9 @@ import {
   FieldSet,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
 
 export const metadata = {
@@ -192,24 +194,80 @@ function EmbedMessage() {
             <AccordionTrigger>Fields</AccordionTrigger>
             <AccordionContent>
               <FieldGroup className="px-1">
+                <Accordion
+                  type="single"
+                  collapsible
+                  className="border px-2 rounded-lg"
+                >
+                  <FieldMessage />
+                </Accordion>
                 <Button>Add Field</Button>
-                {/* TODO: add field component */}
               </FieldGroup>
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="images">
             <AccordionTrigger>Images</AccordionTrigger>
             <AccordionContent>
-              <FieldGroup className="px-1">Images</FieldGroup>
+              <FieldGroup className="px-1">
+                <Field>
+                  <FieldLabel>Image URL</FieldLabel>
+                  <Input type="text" />
+                </Field>
+                <Field>
+                  <FieldLabel>Thumbnail URL</FieldLabel>
+                  <Input type="text" />
+                </Field>
+              </FieldGroup>
             </AccordionContent>
           </AccordionItem>
           <AccordionItem value="footer">
             <AccordionTrigger>Footer</AccordionTrigger>
             <AccordionContent>
-              <FieldGroup className="px-1">Footer</FieldGroup>
+              <FieldGroup className="px-1">
+                <Field>
+                  <FieldLabel>Text</FieldLabel>
+                  <Textarea placeholder="Footer text" />
+                  <div className="flex gap-x-2">
+                    <Field>
+                      <FieldLabel>Timestamp</FieldLabel>
+                      <Input type="time" />
+                    </Field>
+                    <Field>
+                      <FieldLabel>Icon URL</FieldLabel>
+                      <Input type="text" />
+                    </Field>
+                  </div>
+                </Field>
+              </FieldGroup>
             </AccordionContent>
           </AccordionItem>
         </Accordion>
+      </AccordionContent>
+    </AccordionItem>
+  );
+}
+
+function FieldMessage() {
+  return (
+    <AccordionItem value="field">
+      <AccordionTrigger>Field</AccordionTrigger>
+      <AccordionContent>
+        <FieldGroup className="px-1">
+          <Field>
+            <FieldLabel>Name</FieldLabel>
+            <div className="flex gap-x-2 items-center">
+              <Input type="text" />
+              <div className="flex flex-col items-center gap-y-1">
+                <Label>Inline</Label>
+                <Switch />
+              </div>
+            </div>
+          </Field>
+          <Field>
+            <FieldLabel>Value</FieldLabel>
+            <Textarea placeholder="Field value" />
+          </Field>
+        </FieldGroup>
       </AccordionContent>
     </AccordionItem>
   );
