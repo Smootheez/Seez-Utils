@@ -1,67 +1,116 @@
-import { Link } from "react-router-dom";
-import { useState } from "react";
-import { HamburgerButton, ThemeSwitchButton } from "./button";
+"use client";
 
-export function Header() {
-  const [isOpen, setIsOpen] = useState(false);
-  const onClick = () => {
-    document.body.classList.toggle("overflow-hidden", !isOpen);
-    setIsOpen((prev) => !prev);
-  };
+import Link from "next/link";
+import { motion } from "framer-motion";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card";
 
-  const navLinks = [
-    { href: "#home", label: "Home" },
-    { href: "#projects", label: "Projects" },
-    { href: "#contact", label: "Contact" },
-    { href: "#about", label: "About" },
-  ];
+const MotionHeader = motion.header;
+const MotionA = motion.a;
+
+// Animation variants
+const navVariants = {
+  hidden: { opacity: 0, y: -20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { staggerChildren: 0.1, delayChildren: 0.3 },
+  },
+};
+
+const linkVariants = {
+  hidden: { opacity: 0, y: -10 },
+  visible: { opacity: 1, y: 0 },
+};
+
+export default function Header() {
   return (
-    <>
-      <header className="fixed top-0 left-0 w-full z-40">
-        <div className="max-w-7xl mx-auto rounded-full backdrop-blur-xs mt-4 drop-shadow-xl bg-surface/80 px-5 py-2 flex justify-between items-center">
-          <Link
-            to="/"
-            className="text-2xl md:text-3xl font-finger font-bold"
-          >
-            Seez Utils
-          </Link>
-          <nav className="hidden items-center gap-x-3 md:flex">
-            {navLinks.map((link, index) => (
-              <a
-                key={index}
-                href={link.href}
-                className="relative before:content-[''] before:absolute before:-bottom-0 before:w-full before:h-0.5 before:bg-text before:origin-left before:transition-all before:duration-400 before:-translate-x-100 hover:before:translate-x-0 overflow-hidden"
-              >
-                {link.label}
-              </a>
-            ))}
-            <ThemeSwitchButton />
-          </nav>
-          <div className="flex items-center gap-x-3 md:hidden">
-            <ThemeSwitchButton />
-            <HamburgerButton isOpen={isOpen} onToggle={onClick} />
-          </div>
-        </div>
-      </header>
+    <MotionHeader
+      initial={{ y: -50, opacity: 0 }}
+      animate={{ y: [-50, 12, 0], opacity: 1 }} // 👈 keyframes: up -> down -> settle
+      transition={{
+        duration: 0.8,
+        ease: [0.22, 1, 0.36, 1], // smooth, spring-like curve
+      }}
+      className="fixed top-0 left-0 w-full z-40 px-4"
+    >
+      <div className="max-w-7xl mx-auto border-b border-x rounded-full px-4 py-2 mt-3 drop-shadow-lg/20 bg-primary-foreground/20 backdrop-blur-xs flex justify-between items-center">
+        <Link
+          href="/"
+          className="text-4xl font-changa-one tracking-wide hover:text-accent transition-colors"
+        >
+          Seez Utils
+        </Link>
 
-      <div
-        className={`fixed top-0 left-0 w-full h-full bg-background/20 backdrop-blur-xs transition-all duration-300 md:hidden ease-in-out z-30 ${
-          isOpen ? "opacity-100" : "opacity-0 translate-x-full"
-        }`}
-        onClick={onClick}
-      >
-        <nav className="w-full h-full flex justify-center items-center flex-col gap-y-3">
-          {navLinks.map((link, index) => (
-            <a
-              key={index}
-              href={link.href}
-              className="backdrop-blur-xs drop-shadow-xl bg-surface/80 hover:bg-surface/60 rounded-xl w-34 py-1 text-center"
-            >
-              {link.label}
-            </a>
-          ))}
-        </nav>
+        <DesktopNav />
       </div>
-    </>
+    </MotionHeader>
+  );
+}
+
+function DesktopNav() {
+  return (
+    <motion.nav
+      variants={navVariants}
+      initial="hidden"
+      animate="visible"
+      className="flex gap-x-6 font-semibold"
+    >
+      {[
+        {
+          href: "/",
+          label: "Home",
+          desc: "Go to the homepage of Seez Utils.",
+        },
+        {
+          href: "/utils",
+          label: "Utils",
+          desc: "Start exploring fun and practical utilities.",
+        },
+        {
+          href: "/about",
+          label: "About",
+          desc: "Learn more about Seez Utils and its creator.",
+        },
+        {
+          href: "/contact",
+          label: "Contact",
+          desc: "Want to get in touch? Find out how to reach me here.",
+        },
+      ].map(({ href, label, desc }) => (
+        <motion.div key={href} variants={linkVariants}>
+          <HoverCard>
+            <HoverCardTrigger asChild>
+              <MotionA
+                href={href}
+                whileHover={{
+                  scale: 1.1,
+                  y: -2,
+                  color: "var(--accent)",
+                }}
+                transition={{
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 15,
+                  color: { duration: 0.25 },
+                }}
+                className="relative inline-block will-change-transform"
+              >
+                {label}
+                <motion.span
+                  className="absolute bottom-[-4px] left-0 w-0 h-[2px] bg-accent rounded-full"
+                  whileHover={{ width: "100%" }}
+                  transition={{ duration: 0.3 }}
+                />
+              </MotionA>
+            </HoverCardTrigger>
+            <HoverCardContent>{desc}</HoverCardContent>
+          </HoverCard>
+        </motion.div>
+      ))}
+    </motion.nav>
   );
 }
