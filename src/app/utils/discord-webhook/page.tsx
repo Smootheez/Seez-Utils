@@ -1,4 +1,6 @@
-import Footer from "@/components/footer";
+"use client";
+
+import { useState } from "react";
 import {
   Accordion,
   AccordionContent,
@@ -6,43 +8,41 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
-import {
-  Field,
-  FieldDescription,
-  FieldGroup,
-  FieldLabel,
-  FieldLegend,
-  FieldSeparator,
-  FieldSet,
-} from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
-
-export const metadata = {
-  title: "Discord Webhook Sender | Seez Utils",
-  description: "Send messages to Discord via webhooks.",
-  keywords: [
-    "Discord webhook sender",
-    "Send Discord messages",
-    "Discord bot messages",
-    "Webhook testing tool",
-    "Seez Utils Discord",
-    "Minecraft Discord integration",
-    "Seez Utils",
-  ],
-};
+import { ScrollArea } from "@/components/ui/scroll-area";
+import Footer from "@/components/footer";
+import {
+  FieldGroup,
+  FieldSet,
+  FieldLegend,
+  FieldDescription,
+  Field,
+  FieldLabel,
+  FieldSeparator,
+} from "@/components/ui/field";
 
 export default function DiscordWebhookSenderPage() {
+  const [embeds, setEmbeds] = useState<number[]>([0]);
+
+  const addEmbed = () => {
+    if (embeds.length >= 10) return;
+    setEmbeds((prev) => [...prev, prev.length]);
+  };
+
+  const removeEmbed = (index: number) => {
+    setEmbeds((prev) => prev.filter((_, i) => i !== index));
+  };
+
   return (
     <main className="md:px-4 max-w-7xl mx-auto">
       <div className="min-h-screen max-h-screen overflow-hidden w-full grid grid-cols-1 md:grid-cols-2">
         {/* Edit the webhook messages */}
         <ScrollArea className="max-h-screen">
           <div className="p-4 w-full">
-            <form action="">
+            <form>
               <FieldGroup>
                 <FieldSet>
                   <FieldLegend>Discord Webhook Sender</FieldLegend>
@@ -60,7 +60,9 @@ export default function DiscordWebhookSenderPage() {
                     </Field>
                   </FieldGroup>
                 </FieldSet>
+
                 <FieldSeparator />
+
                 <Accordion
                   type="single"
                   collapsible
@@ -87,6 +89,7 @@ export default function DiscordWebhookSenderPage() {
                       </FieldSet>
                     </AccordionContent>
                   </AccordionItem>
+
                   <AccordionItem value="message">
                     <AccordionTrigger>Message</AccordionTrigger>
                     <AccordionContent>
@@ -104,18 +107,32 @@ export default function DiscordWebhookSenderPage() {
                             <FieldLabel>File</FieldLabel>
                             <div className="flex gap-x-2">
                               <Input type="file" className="border-dashed" />
-                              <Button variant={"destructive"}>Clear</Button>
+                              <Button variant="destructive">Clear</Button>
                             </div>
                           </Field>
                         </FieldGroup>
-                        <Button>Add Embed</Button>
-                        <FieldSeparator />
-                        <Accordion
-                          type="single"
-                          collapsible
-                          className="border px-2 rounded-lg"
+
+                        <Button
+                          type="button"
+                          onClick={addEmbed}
+                          disabled={embeds.length >= 10}
                         >
-                          <EmbedMessage />
+                          Add Embed ({embeds.length}/10)
+                        </Button>
+
+                        <FieldSeparator />
+
+                        <Accordion
+                          type="multiple"
+                          className="border px-2 rounded-lg mt-2"
+                        >
+                          {embeds.map((id, i) => (
+                            <EmbedMessage
+                              key={id}
+                              index={i}
+                              onRemove={() => removeEmbed(i)}
+                            />
+                          ))}
                         </Accordion>
                       </FieldSet>
                     </AccordionContent>
@@ -125,7 +142,8 @@ export default function DiscordWebhookSenderPage() {
             </form>
           </div>
         </ScrollArea>
-        {/* Preview of the messages */}
+
+        {/* Preview */}
         <ScrollArea className="bg-blue-400 max-h-screen">
           Preview of the messages
         </ScrollArea>
@@ -136,10 +154,27 @@ export default function DiscordWebhookSenderPage() {
   );
 }
 
-function EmbedMessage() {
+function EmbedMessage({
+  index,
+  onRemove,
+}: {
+  index: number;
+  onRemove: () => void;
+}) {
+  const [fields, setFields] = useState<number[]>([0]);
+
+  const addField = () => {
+    if (fields.length >= 25) return;
+    setFields((prev) => [...prev, prev.length]);
+  };
+
+  const removeField = (index: number) => {
+    setFields((prev) => prev.filter((_, i) => i !== index));
+  };
+
   return (
-    <AccordionItem value="embed">
-      <AccordionTrigger>Embed</AccordionTrigger>
+    <AccordionItem value={`embed-${index}`}>
+      <AccordionTrigger>Embed #{index + 1}</AccordionTrigger>
       <AccordionContent>
         <Accordion type="single" collapsible>
           <AccordionItem value="author">
@@ -163,6 +198,7 @@ function EmbedMessage() {
               </FieldGroup>
             </AccordionContent>
           </AccordionItem>
+
           <AccordionItem value="body">
             <AccordionTrigger>Body</AccordionTrigger>
             <AccordionContent>
@@ -182,29 +218,41 @@ function EmbedMessage() {
                   </Field>
                   <Field>
                     <FieldLabel>Color</FieldLabel>
-                    <div className="flex gap-x-2">
-                      <Input type="text" />
-                    </div>
+                    <Input type="text" />
                   </Field>
                 </div>
               </FieldGroup>
             </AccordionContent>
           </AccordionItem>
+
           <AccordionItem value="fields">
             <AccordionTrigger>Fields</AccordionTrigger>
             <AccordionContent>
               <FieldGroup className="px-1">
                 <Accordion
-                  type="single"
-                  collapsible
-                  className="border px-2 rounded-lg"
+                  type="multiple"
+                  className="border px-2 rounded-lg mt-2"
                 >
-                  <FieldMessage />
+                  {fields.map((id, i) => (
+                    <FieldMessage
+                      key={id}
+                      index={i}
+                      onRemove={() => removeField(i)}
+                    />
+                  ))}
                 </Accordion>
-                <Button>Add Field</Button>
+
+                <Button
+                  type="button"
+                  onClick={addField}
+                  disabled={fields.length >= 25}
+                >
+                  Add Field ({fields.length}/25)
+                </Button>
               </FieldGroup>
             </AccordionContent>
           </AccordionItem>
+
           <AccordionItem value="images">
             <AccordionTrigger>Images</AccordionTrigger>
             <AccordionContent>
@@ -220,6 +268,7 @@ function EmbedMessage() {
               </FieldGroup>
             </AccordionContent>
           </AccordionItem>
+
           <AccordionItem value="footer">
             <AccordionTrigger>Footer</AccordionTrigger>
             <AccordionContent>
@@ -242,15 +291,25 @@ function EmbedMessage() {
             </AccordionContent>
           </AccordionItem>
         </Accordion>
+
+        <Button variant="destructive" className="w-full" onClick={onRemove}>
+          Remove Embed
+        </Button>
       </AccordionContent>
     </AccordionItem>
   );
 }
 
-function FieldMessage() {
+function FieldMessage({
+  index,
+  onRemove,
+}: {
+  index: number;
+  onRemove: () => void;
+}) {
   return (
-    <AccordionItem value="field">
-      <AccordionTrigger>Field</AccordionTrigger>
+    <AccordionItem value={`field-${index}`}>
+      <AccordionTrigger>Field #{index + 1}</AccordionTrigger>
       <AccordionContent>
         <FieldGroup className="px-1">
           <Field>
@@ -267,6 +326,9 @@ function FieldMessage() {
             <FieldLabel>Value</FieldLabel>
             <Textarea placeholder="Field value" />
           </Field>
+          <Button variant="destructive" onClick={onRemove}>
+            Remove Field
+          </Button>
         </FieldGroup>
       </AccordionContent>
     </AccordionItem>
