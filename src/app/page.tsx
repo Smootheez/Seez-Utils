@@ -7,67 +7,12 @@ export default function Home() {
     <>
       <Header />
       <main className="max-w-7xl mx-auto">
-        <HeroSection />
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente
-          temporibus, eaque praesentium voluptatum incidunt cum delectus magnam
-          laboriosam facilis alias dolorem molestias, vel, minima fugit
-          reiciendis minus commodi necessitatibus dignissimos.
-        </p>
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente
-          temporibus, eaque praesentium voluptatum incidunt cum delectus magnam
-          laboriosam facilis alias dolorem molestias, vel, minima fugit
-          reiciendis minus commodi necessitatibus dignissimos.
-        </p>
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente
-          temporibus, eaque praesentium voluptatum incidunt cum delectus magnam
-          laboriosam facilis alias dolorem molestias, vel, minima fugit
-          reiciendis minus commodi necessitatibus dignissimos.
-        </p>
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente
-          temporibus, eaque praesentium voluptatum incidunt cum delectus magnam
-          laboriosam facilis alias dolorem molestias, vel, minima fugit
-          reiciendis minus commodi necessitatibus dignissimos.
-        </p>
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente
-          temporibus, eaque praesentium voluptatum incidunt cum delectus magnam
-          laboriosam facilis alias dolorem molestias, vel, minima fugit
-          reiciendis minus commodi necessitatibus dignissimos.
-        </p>
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente
-          temporibus, eaque praesentium voluptatum incidunt cum delectus magnam
-          laboriosam facilis alias dolorem molestias, vel, minima fugit
-          reiciendis minus commodi necessitatibus dignissimos.
-        </p>
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente
-          temporibus, eaque praesentium voluptatum incidunt cum delectus magnam
-          laboriosam facilis alias dolorem molestias, vel, minima fugit
-          reiciendis minus commodi necessitatibus dignissimos.
-        </p>
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente
-          temporibus, eaque praesentium voluptatum incidunt cum delectus magnam
-          laboriosam facilis alias dolorem molestias, vel, minima fugit
-          reiciendis minus commodi necessitatibus dignissimos.
-        </p>
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente
-          temporibus, eaque praesentium voluptatum incidunt cum delectus magnam
-          laboriosam facilis alias dolorem molestias, vel, minima fugit
-          reiciendis minus commodi necessitatibus dignissimos.
-        </p>
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente
-          temporibus, eaque praesentium voluptatum incidunt cum delectus magnam
-          laboriosam facilis alias dolorem molestias, vel, minima fugit
-          reiciendis minus commodi necessitatibus dignissimos.
-        </p>
+        <section
+          id="hero"
+          className="min-h-screen flex flex-col justify-center items-center text-shadow-sm"
+        >
+          <HeroSection />
+        </section>
       </main>
       <Footer />
     </>

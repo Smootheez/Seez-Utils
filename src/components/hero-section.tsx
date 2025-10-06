@@ -33,7 +33,7 @@ const childUp = {
 
 export default function HeroSection() {
     return (
-      <div className="min-h-screen flex flex-col justify-center items-center  text-shadow-sm">
+      <>
         <motion.h1
           variants={containerOne}
           initial="hidden"
@@ -60,6 +60,6 @@ export default function HeroSection() {
             </motion.span>
           ))}
         </motion.p>
-      </div>
+      </>
     );
 }
