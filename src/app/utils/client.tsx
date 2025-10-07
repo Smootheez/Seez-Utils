@@ -25,123 +25,21 @@ const utilsItem = [
     author: "Smootheez",
   },
   {
-    title: "Lorem Ipsum",
-    description: "Generate lorem ipsum placeholder text.",
-    href: "/utils/lorem-ipsum",
-    author: "Smootheez",
-  },
-  {
     title: "Password Generator",
     description: "Create strong, secure passwords.",
     href: "/utils/password-generator",
     author: "Smootheez",
   },
   {
-    title: "Unit Converter",
-    description: "Convert between various units of measurement.",
-    href: "/utils/unit-converter",
+    title: "Binary Code Translator",
+    description: "Convert text to binary and vice versa.",
+    href: "/utils/binary-code-translator",
     author: "Smootheez",
   },
   {
-    title: "Color Picker",
-    description: "Select and get color codes.",
-    href: "/utils/color-picker",
-    author: "Smootheez",
-  },
-  {
-    title: "Markdown Preview",
-    description: "Render Markdown in real-time.",
-    href: "/utils/markdown-preview",
-    author: "Smootheez",
-  },
-  {
-    title: "JSON Formatter",
-    description: "Format and validate JSON data.",
-    href: "/utils/json-formatter",
-    author: "Smootheez",
-  },
-  {
-    title: "Base64 Encoder/Decoder",
-    description: "Encode and decode Base64 strings.",
-    href: "/utils/base64",
-    author: "Smootheez",
-  },
-  {
-    title: "QR Code Generator",
-    description: "Create QR codes from text or URLs.",
-    href: "/utils/qr-code",
-    author: "Smootheez",
-  },
-  {
-    title: "Timestamp Converter",
-    description: "Convert between timestamps and readable dates.",
-    href: "/utils/timestamp",
-    author: "Smootheez",
-  },
-  {
-    title: "Text Case Converter",
-    description: "Convert text between different cases.",
-    href: "/utils/text-case",
-    author: "Smootheez",
-  },
-  {
-    title: "URL Encoder/Decoder",
-    description: "Encode and decode URL components.",
-    href: "/utils/url-encoder",
-    author: "Smootheez",
-  },
-  {
-    title: "Image Compressor",
-    description: "Compress images without losing quality.",
-    href: "/utils/image-compressor",
-    author: "Smootheez",
-  },
-  {
-    title: "Currency Converter",
-    description: "Convert between different currencies.",
-    href: "/utils/currency-converter",
-    author: "Smootheez",
-  },
-  {
-    title: "Random Number Generator",
-    description: "Generate random numbers within a range.",
-    href: "/utils/random-number",
-    author: "Smootheez",
-  },
-  {
-    title: "HTML Escape/Unescape",
-    description: "Escape and unescape HTML characters.",
-    href: "/utils/html-escape",
-    author: "Smootheez",
-  },
-  {
-    title: "CSS Formatter",
-    description: "Format and beautify CSS code.",
-    href: "/utils/css-formatter",
-    author: "Smootheez",
-  },
-  {
-    title: "SVG Optimizer",
-    description: "Optimize and compress SVG files.",
-    href: "/utils/svg-optimizer",
-    author: "Smootheez",
-  },
-  {
-    title: "Regex Tester",
-    description: "Test and debug regular expressions.",
-    href: "/utils/regex-tester",
-    author: "Smootheez",
-  },
-  {
-    title: "File Hash Generator",
-    description: "Generate file hashes (MD5, SHA-1, etc.).",
-    href: "/utils/file-hash",
-    author: "Smootheez",
-  },
-  {
-    title: "IP Address Lookup",
-    description: "Get information about IP addresses.",
-    href: "/utils/ip-lookup",
+    title: "Morse Code Translator",
+    description: "Translate text to Morse code and vice versa.",
+    href: "/utils/morse-code-translator",
     author: "Smootheez",
   },
 ];
@@ -252,7 +150,7 @@ function UtilsItem({
         stiffness: 250,
         damping: 14,
       }}
-      className="block"
+      className="block"    
     >
       <Card className="relative overflow-hidden min-h-55 h-full drop-shadow-lg/40">
         <div className="absolute left-0 top-0 w-1.5 h-full bg-accent" />

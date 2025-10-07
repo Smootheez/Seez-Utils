@@ -144,12 +144,14 @@ export default function DiscordWebhookSenderPage() {
         </ScrollArea>
 
         {/* Preview */}
-        <ScrollArea className="bg-blue-400 max-h-screen">
+        <ScrollArea className="bg-blue-400 max-h-screen hidden md:block">
           Preview of the messages
         </ScrollArea>
       </div>
 
-      <Footer />
+      <div className="px-4">
+        <Footer />
+      </div>
     </main>
   );
 }
