@@ -19,12 +19,6 @@ const utilsItem = [
     author: "Smootheez",
   },
   {
-    title: "Discord Webhook Sender",
-    description: "Send messages to Discord via webhooks.",
-    href: "/utils/discord-webhook",
-    author: "Smootheez",
-  },
-  {
     title: "Password Generator",
     description: "Create strong, secure passwords.",
     href: "/utils/password-generator",
@@ -107,22 +101,25 @@ export default function UtilsClient() {
         />
       </div>
 
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-        className="grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 grid mb-8"
-      >
-        {utilsItem.map(({ href, title, description, author }) => (
-          <UtilsItem
-            key={href}
-            href={href}
-            title={title}
-            description={description}
-            author={author}
-          />
-        ))}
-      </motion.div>
+      <div className="min-h-screen">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 grid mb-8"
+        >
+          {utilsItem.map(({ href, title, description, author }) => (
+            <UtilsItem
+              key={href}
+              href={href}
+              title={title}
+              description={description}
+              author={author}
+            />
+          ))}
+        </motion.div>
+      </div>
+
       <Footer />
     </main>
   );
