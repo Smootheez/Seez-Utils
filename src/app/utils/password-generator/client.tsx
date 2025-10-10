@@ -12,24 +12,41 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
-import { Copy, RefreshCw, Check, Shield } from "lucide-react";
+import { Copy, RefreshCw, Check } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import { Slider } from "@/components/ui/slider";
 import { Badge } from "@/components/ui/badge";
+import { Field, FieldLabel, FieldSet } from "@/components/ui/field";
 
 export default function PasswordGeneratorClient() {
   const [length, setLength] = useState(12);
+
+  // ✅ Charset toggles
   const [includeUppercase, setIncludeUppercase] = useState(true);
   const [includeNumbers, setIncludeNumbers] = useState(true);
   const [includeSymbols, setIncludeSymbols] = useState(true);
+
+  // ✅ Editable charsets
+  const [lowercaseCharset, setLowercaseCharset] = useState(
+    "abcdefghijklmnopqrstuvwxyz"
+  );
+  const [uppercaseCharset, setUppercaseCharset] = useState(
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+  );
+  const [numberCharset, setNumberCharset] = useState("0123456789");
+  const [symbolCharset, setSymbolCharset] = useState("!@#$%^&*()_+{}[]<>?/|");
+
   const [password, setPassword] = useState("");
   const [copied, setCopied] = useState(false);
 
+  // ✅ Generate password based on dynamic charset values
   const generatePassword = () => {
-    let charset = "abcdefghijklmnopqrstuvwxyz";
-    if (includeUppercase) charset += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    if (includeNumbers) charset += "0123456789";
-    if (includeSymbols) charset += "!@#$%^&*()_+{}[]<>?/|";
+    let charset = lowercaseCharset;
+    if (includeUppercase) charset += uppercaseCharset;
+    if (includeNumbers) charset += numberCharset;
+    if (includeSymbols) charset += symbolCharset;
+
+    if (!charset) return setPassword("");
 
     let result = "";
     for (let i = 0; i < length; i++) {
@@ -46,7 +63,10 @@ export default function PasswordGeneratorClient() {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const getPasswordStrength = (): { label: string; variant: "destructive" | "outline" | "default" | "secondary" } => {
+  const getPasswordStrength = (): {
+    label: string;
+    variant: "destructive" | "outline" | "default" | "secondary";
+  } => {
     let strength = 0;
     if (length >= 12) strength++;
     if (length >= 16) strength++;
@@ -65,31 +85,30 @@ export default function PasswordGeneratorClient() {
   return (
     <Card className="w-full max-w-md drop-shadow-lg">
       <CardHeader className="gap-y-3 pb-6 flex flex-col items-center text-center">
-        <CardTitle className="text-2xl md:text-3xl font-bold">Password Generator</CardTitle>
+        <CardTitle className="text-2xl md:text-3xl font-bold">
+          Password Generator
+        </CardTitle>
         <CardDescription>
           Create strong, secure passwords with custom options
         </CardDescription>
       </CardHeader>
 
       <CardContent className="space-y-6">
-        {/* Generated Password Display */}
+        {/* Password display */}
         <div className="space-y-2">
           <Label className="text-sm font-medium">Generated Password</Label>
           <div className="flex gap-2">
-            <div className="relative flex-1">
-              <Input
-                readOnly
-                value={password}
-                placeholder="Click generate to create password"
-                className="font-mono text-sm"
-              />
-            </div>
+            <Input
+              readOnly
+              value={password}
+              placeholder="Click generate to create password"
+              className="font-mono text-sm"
+            />
             <Button
               variant="outline"
               size="icon"
               onClick={copyToClipboard}
               disabled={!password}
-              className="shrink-0"
               title="Copy to clipboard"
             >
               {copied ? (
@@ -101,7 +120,7 @@ export default function PasswordGeneratorClient() {
           </div>
         </div>
 
-        {/* Password Length Slider */}
+        {/* Length slider */}
         <div className="space-y-3">
           <div className="flex items-center justify-between">
             <Label className="text-sm font-medium">Password Length</Label>
@@ -113,51 +132,103 @@ export default function PasswordGeneratorClient() {
             value={[length]}
             onValueChange={(value) => setLength(value[0])}
             min={4}
-            max={32}
+            max={64}
             step={1}
-            className="w-full"
           />
           <div className="flex justify-between text-xs">
             <span>4</span>
-            <span>32</span>
+            <span>64</span>
           </div>
         </div>
 
-        {/* Options */}
-        <div className="space-y-4 pt-2">
-          <div className="flex items-center justify-between py-2 px-1 rounded-lg">
-            <Label htmlFor="uppercase" className="cursor-pointer font-medium">
-              Uppercase Letters (A-Z)
-            </Label>
-            <Switch
+        {/* Charset configuration */}
+        <FieldSet className="pt-2">
+          {/* ✅ Lowercase (always included) */}
+          <Field>
+            <FieldLabel
+              htmlFor="lowercase"
+              className="cursor-pointer font-medium"
+            >
+              Lowercase Letters (a-z)
+            </FieldLabel>
+            <Input
+              id="lowercase"
+              type="text"
+              value={lowercaseCharset}
+              onChange={(e) => setLowercaseCharset(e.target.value)}
+              className="font-mono text-sm"
+            />
+          </Field>
+
+          {/* ✅ Uppercase */}
+          <Field>
+            <div className="flex items-center justify-between px-1">
+              <FieldLabel
+                htmlFor="uppercase"
+                className="cursor-pointer font-medium"
+              >
+                Uppercase Letters (A-Z)
+              </FieldLabel>
+              <Switch
+                id="uppercase"
+                checked={includeUppercase}
+                onCheckedChange={setIncludeUppercase}
+              />
+            </div>
+            <Input
               id="uppercase"
-              checked={includeUppercase}
-              onCheckedChange={setIncludeUppercase}
+              type="text"
+              disabled={!includeUppercase}
+              value={uppercaseCharset}
+              onChange={(e) => setUppercaseCharset(e.target.value)}
+              className="font-mono text-sm"
             />
-          </div>
+          </Field>
 
-          <div className="flex items-center justify-between py-2 px-1 rounded-lg">
-            <Label htmlFor="numbers" className="cursor-pointer font-medium">
-              Numbers (0-9)
-            </Label>
-            <Switch
+          {/* ✅ Numbers */}
+          <Field>
+            <div className="flex items-center justify-between px-1">
+              <Label htmlFor="numbers" className="cursor-pointer font-medium">
+                Numbers (0-9)
+              </Label>
+              <Switch
+                id="numbers"
+                checked={includeNumbers}
+                onCheckedChange={setIncludeNumbers}
+              />
+            </div>
+            <Input
               id="numbers"
-              checked={includeNumbers}
-              onCheckedChange={setIncludeNumbers}
+              type="text"
+              disabled={!includeNumbers}
+              value={numberCharset}
+              onChange={(e) => setNumberCharset(e.target.value)}
+              className="font-mono text-sm"
             />
-          </div>
+          </Field>
 
-          <div className="flex items-center justify-between py-2 px-1 rounded-lg">
-            <Label htmlFor="symbols" className="cursor-pointer font-medium">
-              Symbols (!@#$%...)
-            </Label>
-            <Switch
+          {/* ✅ Symbols */}
+          <Field>
+            <div className="flex items-center justify-between px-1">
+              <Label htmlFor="symbols" className="cursor-pointer font-medium">
+                Symbols (!@#$%...)
+              </Label>
+              <Switch
+                id="symbols"
+                checked={includeSymbols}
+                onCheckedChange={setIncludeSymbols}
+              />
+            </div>
+            <Input
               id="symbols"
-              checked={includeSymbols}
-              onCheckedChange={setIncludeSymbols}
+              type="text"
+              disabled={!includeSymbols}
+              value={symbolCharset}
+              onChange={(e) => setSymbolCharset(e.target.value)}
+              className="font-mono text-sm"
             />
-          </div>
-        </div>
+          </Field>
+        </FieldSet>
       </CardContent>
 
       <CardFooter className="pt-2">
